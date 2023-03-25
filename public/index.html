@@ -54,6 +54,8 @@
 			max-width: 100%;
 		}
 	</style>
+<input type="text" id="input-field" style="display:none">
+<button id="submit-button" style="display:none" onclick="showText()">Отправить</button>
 	<script type="text/javascript">
 		function showImage(id) {
 			var image = document.getElementById(id);
@@ -67,24 +69,39 @@
 		}
 
 		function hideImages() {
-			var images = document.querySelectorAll('.image');
-			for (var i = 0; i < images.length; i++) {
-				images[i].style.display = "none";
-			}
+  var images = document.querySelectorAll('.image');
+  var inputField = document.getElementById("input-field");
+  var submitButton = document.getElementById("submit-button");
+  for (var i = 0; i < images.length; i++) {
+    images[i].style.display = "none";
+  }
+  inputField.style.display = "none";
+  submitButton.style.display = "none";
+}
 		}
-
+function showText() {
+  var inputField = document.getElementById("input-field");
+  var text = inputField.value;
+  var textElement = document.createElement("h2");
+  textElement.innerHTML = text;
+  document.body.appendChild(textElement);
+}
 		function checkImages() {
-			var images = document.querySelectorAll('.image');
-			var count = 0;
-			for (var i = 0; i < images.length; i++) {
-				if (images[i].style.display === "block") {
-					count++;
-				}
-			}
-			if (count > 1) {
-				hideImages();
-			}
-		}
+  var images = document.querySelectorAll('.image');
+  var count = 0;
+  for (var i = 0; i < images.length; i++) {
+    if (images[i].style.display === "block") {
+      count++;
+    }
+  }
+  if (count > 1) {
+    hideImages();
+    var inputField = document.getElementById("input-field");
+    var submitButton = document.getElementById("submit-button");
+    inputField.style.display = "block";
+    submitButton.style.display = "block";
+  }
+}
 	</script>
 </head>
 <body>
